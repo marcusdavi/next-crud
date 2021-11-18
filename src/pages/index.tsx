@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Botao from "../components/Botao";
 import Formulario from "../components/Formulario";
 import Layout from "../components/Layout";
@@ -12,12 +13,19 @@ export default function Home() {
     new Cliente("Daiane", 40, "4"),
   ];
 
+  const [visivel, setVisivel] = useState<"tabela" | "form">("tabela");
+
   function clienteSelecionado(cliente: Cliente) {
     console.log(cliente.nome);
   }
 
   function clienteExcluido(cliente: Cliente) {
     console.log(cliente.idade);
+  }
+
+  function salvarCliente(cliente: Cliente) {
+    console.log(cliente);
+    setVisivel("tabela")
   }
 
   return (
@@ -27,17 +35,30 @@ export default function Home() {
       text-white`}
     >
       <Layout titulo="Cadastro Simples">
-        <div className="flex justify-end">
-          <Botao className="mb-4" cor="green">
-            Novo Cliente
-          </Botao>
-        </div>
-        <Tabela
-          clientes={clientesMock}
-          clienteSelecionado={clienteSelecionado}
-          clienteExcluido={clienteExcluido}
-        />
-        <Formulario cliente={clientesMock[2]}></Formulario>
+        {visivel === "tabela" ? (
+          <>
+            <div className="flex justify-end">
+              <Botao
+                className="mb-4"
+                cor="green"
+                onClick={() => setVisivel("form")}
+              >
+                Novo Cliente
+              </Botao>
+            </div>
+            <Tabela
+              clientes={clientesMock}
+              clienteSelecionado={clienteSelecionado}
+              clienteExcluido={clienteExcluido}
+            />
+          </>
+        ) : (
+          <Formulario
+            cliente={clientesMock[2]}
+            cancelado={() => setVisivel("tabela")}
+            clienteMudou={salvarCliente}
+          />
+        )}
       </Layout>
     </div>
   );
