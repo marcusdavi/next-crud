@@ -33,7 +33,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Visão geral do sistema
+## Imagens do sistema
+
+### Tabela
 <p align="center">
-  <img src="/public/img/img-system.PNG">
+  <img src="/public/img/img-system-table.PNG">
+</p>
+
+### Formulário
+<p align="center">
+  <img src="/public/img/img-system-form.PNG">
 </p>
